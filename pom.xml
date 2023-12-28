@@ -8,10 +8,10 @@
 		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.my-portfolio-api</groupId>
-	<artifactId>my-portfolio-api</artifactId>
+	<groupId>com.my-portfolio</groupId>
+	<artifactId>my-portfolio</artifactId>
 	<version>0.0.1</version>
-	<name>my-portfolio-api</name>
+	<name>my-portfolio</name>
 	<description>Development of an API for my portfolio</description>
 	<properties>
 		<java.version>17</java.version>
