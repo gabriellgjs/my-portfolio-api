@@ -1,6 +1,6 @@
-package com.myportfolio.repositories;
+package com.myportfolio.user.repositories;
 
-import com.myportfolio.domain.user.User;
+import com.myportfolio.user.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;

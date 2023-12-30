@@ -1,11 +1,11 @@
-package com.myportfolio.controllers;
+package com.myportfolio.auth.controllers;
 
-import com.myportfolio.domain.user.AutheticationDTO;
-import com.myportfolio.domain.user.LoginResponseDTO;
-import com.myportfolio.domain.user.RegisterDTO;
-import com.myportfolio.domain.user.User;
-import com.myportfolio.infra.security.TokenService;
-import com.myportfolio.repositories.UserRepository;
+import com.myportfolio.user.dtos.AutheticationDTO;
+import com.myportfolio.user.dtos.LoginResponseDTO;
+import com.myportfolio.user.dtos.RegisterDTO;
+import com.myportfolio.user.models.User;
+import com.myportfolio.security.TokenService;
+import com.myportfolio.user.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

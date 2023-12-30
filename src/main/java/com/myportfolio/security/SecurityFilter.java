@@ -1,6 +1,6 @@
-package com.myportfolio.infra.security;
+package com.myportfolio.security;
 
-import com.myportfolio.repositories.UserRepository;
+import com.myportfolio.user.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
