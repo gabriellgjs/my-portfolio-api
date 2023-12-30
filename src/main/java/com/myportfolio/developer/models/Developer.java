@@ -4,8 +4,8 @@ import com.myportfolio.user.models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "developer")
-@Table(name = "developer")
+@Entity(name = "developers")
+@Table(name = "developers")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,13 +18,18 @@ public class Developer {
   private Long Id;
   private String name;
   private String email;
+
+  @Column(name = "github_url")
   private String githubURL;
+  @Column(name = "linkedin_url")
   private String linkedinURL;
+  @Column(name = "about_us")
   private String aboutUs;
+  @Column(name = "whatsapp_phone")
   private String whatsappPhone;
   private String curriculum = "";
 
   @ManyToOne
-  @JoinColumn(name="userId")
+  @JoinColumn(name="user_id")
   private User user;
 }
