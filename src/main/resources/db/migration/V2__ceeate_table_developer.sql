@@ -1,11 +1,11 @@
-CREATE TABLE developer (
+CREATE TABLE developers (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
-    githubURL TEXT NOT NULL,
-    linkedinURL TEXT NOT NULL,
-    aboutUs TEXT NOT NULL,
-    whatsappPhone TEXT NOT NULL,
+    github_url TEXT NOT NULL,
+    linkedin_url TEXT NOT NULL,
+    about_us TEXT NOT NULL,
+    whatsapp_phone TEXT NOT NULL,
     curriculum TEXT,
-    userId INTEGER REFERENCES users(id)
+    user_id INTEGER REFERENCES users(id)
 );
