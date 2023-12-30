@@ -2,7 +2,6 @@ package com.myportfolio.developer.controllers;
 
 import com.myportfolio.developer.dtos.DeveloperDTO;
 import com.myportfolio.developer.models.Developer;
-import com.myportfolio.developer.repositories.DeveloperRepository;
 import com.myportfolio.developer.services.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

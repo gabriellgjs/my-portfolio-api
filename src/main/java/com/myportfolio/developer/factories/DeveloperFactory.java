@@ -4,7 +4,6 @@ import com.myportfolio.developer.dtos.DeveloperDTO;
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.user.models.User;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class DeveloperFactory {
