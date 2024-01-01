@@ -25,6 +25,6 @@ public class Education {
   private SituationType situation;
 
   @ManyToOne
-  @JoinColumn(name="developers_id")
+  @JoinColumn(name="developer_id")
   private Developer developer;
 }
