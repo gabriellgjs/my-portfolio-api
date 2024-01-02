@@ -1,0 +1,42 @@
+version: '3.5'
+
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: "America/Sao_Paulo"
+    networks:
+      - my-portfolio-network-api
+    restart: always
+
+  my-portfolio-api:
+    container_name: my-portfolio-api
+    image: gabriellgjs/my-portfolio-api:latest
+    ports:
+      - "80:3000"
+    environment:
+      SERVER_PORT: 3000
+      SPRING_PROFILES_ACTIVE: prod
+      TZ: "America/Sao_Paulo"
+    depends_on:
+      - postgres-db
+    networks:
+      - my-portfolio-network-api
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+        reservations:
+          memory: 700M
+
+networks:
+  my-portfolio-network-api:
+    driver: bridge
+    name: my-portfolio-network-api

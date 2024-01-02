@@ -1,5 +1,5 @@
 HELP.md
-.env
+deploy/docker/.env
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

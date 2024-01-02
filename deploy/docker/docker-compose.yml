@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "my-portfolio"
+      POSTGRES_USER: "pguser"
+      POSTGRES_PASSWORD: "pgpassword"
+      TZ: "America/Sao_Paulo"
+    networks:
+      - my-portfolio-network-api
+    restart: always
+
+networks:
+  my-portfolio-network-api:
+    driver: bridge
+    name: my-portfolio-network-api
