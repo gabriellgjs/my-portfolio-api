@@ -17,17 +17,24 @@ services:
 
   my-portfolio-api:
     container_name: my-portfolio-api
-    image: my-portfolio-api:latest
+    image: gabriellgjs/my-portfolio-api:latest
     ports:
-      - "8080:8080"
+      - "80:3000"
     environment:
-      SPRING_PROFILES_ACTIVE: qa
+      SERVER_PORT: 3000
+      SPRING_PROFILES_ACTIVE: prod
       TZ: "America/Sao_Paulo"
     depends_on:
       - postgres-db
     networks:
       - my-portfolio-network-api
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+        reservations:
+          memory: 700M
 
 networks:
   my-portfolio-network-api:

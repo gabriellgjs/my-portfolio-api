@@ -5,11 +5,11 @@ services:
     container_name: postgres-db
     image: postgres:alpine
     ports:
-      - ${POSTGRES_PORT}:5432
+      - "5432:5432"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: "my-portfolio"
+      POSTGRES_USER: "pguser"
+      POSTGRES_PASSWORD: "pgpassword"
       TZ: "America/Sao_Paulo"
     networks:
       - my-portfolio-network-api
