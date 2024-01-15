@@ -13,6 +13,8 @@ public class EducationFactory {
     newEducation.setCourse(data.course());
     newEducation.setInstitution(data.institution());
     newEducation.setSituation(data.situation());
+    newEducation.setDateStart(data.dateStart());
+    newEducation.setDateEnd(data.dateEnd());
     newEducation.setDeveloper(developer);
 
     return newEducation;

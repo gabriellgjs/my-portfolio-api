@@ -5,6 +5,8 @@ import com.myportfolio.education.enums.SituationType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity(name = "educations")
 @Table(name = "educations")
 @Getter
@@ -27,4 +29,12 @@ public class Education {
   @ManyToOne
   @JoinColumn(name="developer_id")
   private Developer developer;
+
+  @Temporal(TemporalType.DATE)
+  @Column(name="date_start")
+  private Date dateStart;
+
+  @Temporal(TemporalType.DATE)
+  @Column(name="date_end")
+  private Date dateEnd;
 }
