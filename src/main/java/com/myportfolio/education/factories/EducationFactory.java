@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EducationFactory {
-  public Education getDeveloper(EducationDTO data, Developer developer) {
+  public Education createEducation(EducationDTO data, Developer developer) {
     Education newEducation = new Education();
 
     newEducation.setCourse(data.course());

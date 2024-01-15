@@ -39,7 +39,7 @@ public class EducationService {
       throw new Exception("Desenvolvedor não encontrado");
     }
 
-    Education newEducation = this.educationFactory.getDeveloper(data, developer.get());
+    Education newEducation = this.educationFactory.createEducation(data, developer.get());
 
     this.educationRepository.save(newEducation);
 
