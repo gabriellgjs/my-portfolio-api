@@ -14,7 +14,7 @@ public class ExperienceFactory {
     newExperience.setTitle(data.title());
     newExperience.setCaption(data.caption());
     newExperience.setDateStart(data.dateStart());
-    newExperience.setDateEnd(data.dateEnd());
+    newExperience.setDateEnd(data.dateEnd().orElse(null));
     newExperience.setDeveloper(developer);
 
     return  newExperience;
