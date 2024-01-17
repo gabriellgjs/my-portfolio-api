@@ -1,5 +1,6 @@
 package com.myportfolio.user.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.user.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,8 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long Id;
   private String email;
+
+  @JsonIgnore
   private String password;
   @Enumerated(EnumType.STRING)
 
@@ -36,6 +39,7 @@ public class User implements UserDetails {
   }
 
   @Override
+  @JsonIgnore
   public Collection<? extends GrantedAuthority> getAuthorities() {
     if(this.role == UserRole.ADMIN) {
       return  List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
@@ -44,26 +48,31 @@ public class User implements UserDetails {
   }
 
   @Override
+  @JsonIgnore
   public String getUsername() {
     return this.email;
   }
 
   @Override
+  @JsonIgnore
   public boolean isAccountNonExpired() {
     return true;
   }
 
   @Override
+  @JsonIgnore
   public boolean isAccountNonLocked() {
     return true;
   }
 
   @Override
+  @JsonIgnore
   public boolean isCredentialsNonExpired() {
     return true;
   }
 
   @Override
+  @JsonIgnore
   public boolean isEnabled() {
     return true;
   }

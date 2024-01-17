@@ -17,12 +17,12 @@ public class DeveloperController {
   @Autowired
   private DeveloperService developerService;
   @GetMapping
-  public ResponseEntity<List<Developer>> getTasks () {
+  public ResponseEntity<List<Developer>> getDeveloper () {
     return new ResponseEntity<>(this.developerService.getAllDevelopers(), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Developer> createTask (@RequestBody DeveloperDTO data) throws Exception {
+  public ResponseEntity<Developer> createDeveloper (@RequestBody DeveloperDTO data) throws Exception {
     Developer newDeveloper = this.developerService.createDeveloper(data);
 
     return new ResponseEntity<>(newDeveloper, HttpStatus.CREATED);
