@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EducationFactory {
-  public Education getDeveloper(EducationDTO data, Developer developer) {
+  public Education createEducation(EducationDTO data, Developer developer) {
     Education newEducation = new Education();
 
     newEducation.setCourse(data.course());
     newEducation.setInstitution(data.institution());
     newEducation.setSituation(data.situation());
+    newEducation.setDateStart(data.dateStart());
+    newEducation.setDateEnd(data.dateEnd());
     newEducation.setDeveloper(developer);
 
     return newEducation;

@@ -1,34 +1,26 @@
-package com.myportfolio.education.models;
+package com.myportfolio.experience.models;
 
 import com.myportfolio.developer.models.Developer;
-import com.myportfolio.education.enums.SituationType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
 
-@Entity(name = "educations")
-@Table(name = "educations")
+@Entity(name = "experiences")
+@Table(name = "experiences")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Education {
+public class Experience {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String course;
+  private String title;
 
-  private String institution;
-
-  @Enumerated(EnumType.STRING)
-  private SituationType situation;
-
-  @ManyToOne
-  @JoinColumn(name="developer_id")
-  private Developer developer;
+  private String caption;
 
   @Temporal(TemporalType.DATE)
   @Column(name="date_start")
@@ -37,4 +29,8 @@ public class Education {
   @Temporal(TemporalType.DATE)
   @Column(name="date_end")
   private Date dateEnd;
+
+  @ManyToOne
+  @JoinColumn(name="developer_id")
+  private Developer developer;
 }
