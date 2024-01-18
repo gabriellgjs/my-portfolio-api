@@ -1,8 +1,11 @@
 package com.myportfolio.developer.models;
 
+import com.myportfolio.skill.models.Skill;
 import com.myportfolio.user.models.User;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity(name = "developers")
 @Table(name = "developers")
@@ -32,4 +35,11 @@ public class Developer {
   @ManyToOne
   @JoinColumn(name="user_id")
   private User user;
+
+  @ManyToMany
+  @JoinTable(name = "developers_skills",
+    joinColumns = @JoinColumn(name ="developer_id"),
+  inverseJoinColumns = @JoinColumn(name = "skill_id")
+  )
+  private Set<Skill> skills;
 }
