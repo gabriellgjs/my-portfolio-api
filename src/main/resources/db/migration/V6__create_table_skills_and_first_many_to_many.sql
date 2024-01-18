@@ -1,6 +1,6 @@
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE developers_skills (
