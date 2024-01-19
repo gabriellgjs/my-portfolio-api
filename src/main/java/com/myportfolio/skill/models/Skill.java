@@ -2,6 +2,7 @@ package com.myportfolio.skill.models;
 
 
 import com.myportfolio.developer.models.Developer;
+import com.myportfolio.experience.models.Experience;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,4 +26,7 @@ public class Skill {
 
   @ManyToMany(mappedBy = "skills")
   private Set<Developer> developers;
+
+  @ManyToMany(mappedBy = "skills")
+  private Set<Experience> experiences;
 }
