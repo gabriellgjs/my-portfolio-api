@@ -5,6 +5,7 @@ import com.myportfolio.user.models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "developers")
@@ -41,5 +42,10 @@ public class Developer {
     joinColumns = @JoinColumn(name ="developer_id"),
   inverseJoinColumns = @JoinColumn(name = "skill_id")
   )
-  private Set<Skill> skills;
+  private Set<Skill> skills = new HashSet<>();
+
+  public void addSkill(Skill skill) {
+    this.skills.add(skill);
+    skill.getDevelopers().add(this);
+  }
 }

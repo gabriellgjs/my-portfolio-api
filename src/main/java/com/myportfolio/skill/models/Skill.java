@@ -3,9 +3,11 @@ package com.myportfolio.skill.models;
 
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.experience.models.Experience;
+import com.myportfolio.projects.models.Project;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "skills")
@@ -25,8 +27,11 @@ public class Skill {
   private String name;
 
   @ManyToMany(mappedBy = "skills")
-  private Set<Developer> developers;
+  private Set<Developer> developers = new HashSet<>();
 
   @ManyToMany(mappedBy = "skills")
-  private Set<Experience> experiences;
+  private Set<Experience> experiences = new HashSet<>();
+
+  @ManyToMany(mappedBy = "skills")
+  private Set<Project> projects = new HashSet<>();
 }

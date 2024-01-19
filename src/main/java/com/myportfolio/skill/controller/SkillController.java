@@ -27,4 +27,10 @@ public class SkillController {
   public ResponseEntity<Skill> createSkill(@RequestBody SkillDTO data) {
     return new ResponseEntity<>(this.skillService.createSkill(data), HttpStatus.CREATED);
   }
+
+  @PostMapping("/developer/{developerId}/skill")
+  public ResponseEntity<Skill> addSkill(@PathVariable(value = "developerId") Long developerId, @RequestBody SkillDTO data) {
+
+    return new ResponseEntity<>(this.skillService.addSkillInDeveloper(developerId, data), HttpStatus.CREATED);
+  }
 }
