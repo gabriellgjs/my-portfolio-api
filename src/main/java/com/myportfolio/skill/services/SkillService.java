@@ -9,6 +9,7 @@ import com.myportfolio.skill.repositories.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,30 +34,33 @@ public class SkillService {
   }
 
   public List<Skill> listAllSkills() {
-    return this.skillRepository.findAll();
+    List<Skill> skillsList = new ArrayList<>();
+    System.out.println(this.skillRepository.findAll());
+    this.skillRepository.findAll().forEach(skillsList::add);
+
+
+    return skillsList;
   }
 
   public Skill addSkillInDeveloper(Long developerId, SkillDTO skillRequest) {
-    Developer developer2 =  this.developerRepository.findById(developerId).get();
-
      Skill skill = this.developerRepository.findById(developerId).map(developer -> {
-       Optional<Long> skillId = skillRequest.id();
+       if(skillRequest.id().isPresent()) {
+         Long skillId = skillRequest.id().get();
+         Skill skillExist = this.skillRepository.findById(skillId)
+         .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
+         developer.addSkill(skillExist);
+         this.developerRepository.save(developer);
+         return skillExist;
+       }
 
-      // skill is existed
-      if (skillId.isPresent()) {
-        Skill skillExist = this.skillRepository.findById(skillId.get())
-        .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
-        developer.addSkill(skillExist);
-        this.developerRepository.save(developer);
-        return skillExist;
-      }
 
-      // add and create new Skill
-      Skill newSkill = this.skillFactory.createSkill(skillRequest);
+       Skill newSKill =  skillFactory.createSkill(skillRequest);
 
-      developer.addSkill(newSkill);
-       this.developerRepository.save(developer);
-      return newSkill;
+       developer.addSkill(newSKill);
+        this.skillRepository.save(newSKill);
+       return newSKill;
+
+
     }).orElseThrow(() -> new RuntimeException("Not found Developer with id = " + developerId));
 
      return skill;
