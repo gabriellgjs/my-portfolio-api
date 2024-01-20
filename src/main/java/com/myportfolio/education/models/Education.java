@@ -1,5 +1,6 @@
 package com.myportfolio.education.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.education.enums.SituationType;
 import jakarta.persistence.*;
@@ -26,10 +27,6 @@ public class Education {
   @Enumerated(EnumType.STRING)
   private SituationType situation;
 
-  @ManyToOne
-  @JoinColumn(name="developer_id")
-  private Developer developer;
-
   @Temporal(TemporalType.DATE)
   @Column(name="date_start")
   private Date dateStart;
@@ -37,4 +34,9 @@ public class Education {
   @Temporal(TemporalType.DATE)
   @Column(name="date_end")
   private Date dateEnd;
+
+  @ManyToOne
+  @JoinColumn(name="developer_id")
+  @JsonIgnore
+  private Developer developer;
 }

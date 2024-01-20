@@ -1,3 +1,5 @@
 package com.myportfolio.skill.dtos;
 
-public record SkillDTO(String name) {}
+import java.util.Optional;
+
+public record SkillDTO(Optional<Long>id,  String name) {}

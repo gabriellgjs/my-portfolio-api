@@ -27,6 +27,7 @@ public class SecurityConfigurations {
     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     .authorizeHttpRequests(authorize -> authorize
     .requestMatchers(HttpMethod.GET,"/ping").permitAll()
+    .requestMatchers(HttpMethod.GET, "/resume").permitAll()
     .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
     .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
     .requestMatchers(HttpMethod.GET,"/ping/pong").hasRole("ADMIN")
@@ -38,6 +39,7 @@ public class SecurityConfigurations {
     .requestMatchers(HttpMethod.POST, "/experiences").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/experiences").hasRole("ADMIN")
     .requestMatchers(HttpMethod.POST, "/skills").hasRole("ADMIN")
+    .requestMatchers(HttpMethod.POST, "/skills/**").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/skills").hasRole("ADMIN")
     .requestMatchers(HttpMethod.POST, "/projects").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/projects").hasRole("ADMIN")

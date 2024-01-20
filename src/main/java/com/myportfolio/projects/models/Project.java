@@ -1,8 +1,13 @@
 package com.myportfolio.projects.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.developer.models.Developer;
+import com.myportfolio.skill.models.Skill;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "projects")
 @Table(name = "projects")
@@ -29,5 +34,13 @@ public class Project {
 
   @ManyToOne
   @JoinColumn(name="developer_id")
+  @JsonIgnore
   private Developer developer;
+
+  @ManyToMany
+  @JoinTable(name = "projects_skills",
+  joinColumns = @JoinColumn(name ="project_id"),
+  inverseJoinColumns = @JoinColumn(name = "skill_id")
+  )
+  private Set<Skill> skills = new HashSet<>();
 }

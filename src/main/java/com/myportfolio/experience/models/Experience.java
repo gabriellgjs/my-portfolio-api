@@ -1,11 +1,13 @@
 package com.myportfolio.experience.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.skill.models.Skill;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "experiences")
@@ -34,6 +36,7 @@ public class Experience {
 
   @ManyToOne
   @JoinColumn(name="developer_id")
+  @JsonIgnore
   private Developer developer;
 
   @ManyToMany
@@ -41,5 +44,5 @@ public class Experience {
   joinColumns = @JoinColumn(name ="experience_id"),
   inverseJoinColumns = @JoinColumn(name = "skill_id")
   )
-  private Set<Skill> skills;
+  private Set<Skill> skills = new HashSet<>();
 }
