@@ -1,6 +1,6 @@
 package com.myportfolio.resume.controllers;
 
-import com.myportfolio.resume.model.Resume;
+import com.myportfolio.resume.models.Resume;
 import com.myportfolio.resume.services.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

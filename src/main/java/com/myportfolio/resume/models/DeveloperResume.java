@@ -1,4 +1,4 @@
-package com.myportfolio.resume.model;
+package com.myportfolio.resume.models;
 
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.skill.models.Skill;
@@ -24,7 +24,6 @@ public class DeveloperResume {
   private String whatsappPhone;
   private  String curriculum = "";
   private Set<Skill> skills = new HashSet<>();
-
 
   public DeveloperResume(Developer developer) {
    this.id = developer.getId();

@@ -1,9 +1,12 @@
-package com.myportfolio.resume.model;
+package com.myportfolio.resume.models;
 
+import com.myportfolio.education.models.Education;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,4 +15,5 @@ import lombok.Setter;
 public class Resume {
 
   private DeveloperResume developer;
+  private List<Education> education;
 }
