@@ -1,6 +1,7 @@
 package com.myportfolio.resume.models;
 
 import com.myportfolio.education.models.Education;
+import com.myportfolio.projects.models.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,6 @@ import java.util.List;
 public class Resume {
 
   private DeveloperResume developer;
-  private List<Education> education;
+  private List<Education> educations;
+  private List<Project> projects;
 }
