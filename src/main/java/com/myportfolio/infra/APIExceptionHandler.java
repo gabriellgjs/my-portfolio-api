@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(SkillExistException.class)
-  private ResponseEntity<Object> skillExistException(SkillExistException exception) {
+  private ResponseEntity<ResponseException> skillExistException(SkillExistException exception) {
     ResponseException threatResponse = new ResponseException(HttpStatus.BAD_REQUEST, exception.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(threatResponse);
   }
