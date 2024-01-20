@@ -2,6 +2,7 @@ package com.myportfolio.resume.factories;
 
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.education.models.Education;
+import com.myportfolio.experience.models.Experience;
 import com.myportfolio.projects.models.Project;
 import com.myportfolio.resume.models.DeveloperResume;
 import com.myportfolio.resume.models.Resume;
@@ -12,7 +13,12 @@ import java.util.List;
 @Component
 public class ResumeFactory {
 
-  public Resume createResume(Developer developer, List<Education> educations, List<Project> projects) {
+  public Resume createResume(
+    Developer developer,
+    List<Education> educations,
+    List<Project> projects,
+    List<Experience> experiences
+  ) {
     Resume resume = new Resume();
 
     DeveloperResume developerResume = new DeveloperResume(developer);
@@ -20,6 +26,7 @@ public class ResumeFactory {
     resume.setDeveloper(developerResume);
     resume.setEducations(educations);
     resume.setProjects(projects);
+    resume.setExperiences(experiences);
 
     return resume;
   }

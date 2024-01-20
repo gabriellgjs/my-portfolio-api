@@ -1,5 +1,6 @@
 package com.myportfolio.experience.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.skill.models.Skill;
 import jakarta.persistence.*;
@@ -35,6 +36,7 @@ public class Experience {
 
   @ManyToOne
   @JoinColumn(name="developer_id")
+  @JsonIgnore
   private Developer developer;
 
   @ManyToMany
