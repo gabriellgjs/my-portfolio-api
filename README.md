@@ -22,7 +22,7 @@
   <a href="#how-to-use">Instalando o projeto</a> •
   <a href="#usage">Uso</a> 
 </div>
-
+</br>
 Essa aplicação foi desenvolvida  utilizando **Java e Spring** para criação de uma API para criar meu portólio. O intuito do projeto é fornecer liberdade de como é construído o frontend do meu portfólio.  Podendo adicionar, atualizar e remover dados sem alterar códigos estáticos no frontend.
 <h2 id="pre-requisites">💻 Requisitos</h2>
 
