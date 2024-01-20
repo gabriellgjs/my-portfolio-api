@@ -34,8 +34,6 @@ public class ResumeService {
     List<Education> educations = this.educationRepository.findByDeveloperId(id);
     List<Project> projects = this.projectRepository.findByDeveloperId(id);
 
-    Resume newResume = this.resumeFactory.createResume(developer, educations, projects);
-
-    return newResume;
+    return this.resumeFactory.createResume(developer, educations, projects);
   }
 }

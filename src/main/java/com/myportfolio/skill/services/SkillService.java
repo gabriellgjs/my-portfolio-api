@@ -41,7 +41,7 @@ public class SkillService {
   }
 
   public Skill addSkillInDeveloper(Long developerId, SkillDTO skillRequest) {
-     Skill skill = this.developerRepository.findById(developerId).map(developer -> {
+     return this.developerRepository.findById(developerId).map(developer -> {
        if(skillRequest.id().isPresent()) {
          Long skillId = skillRequest.id().get();
          Skill skillExist = this.skillRepository.findById(skillId)
@@ -60,7 +60,5 @@ public class SkillService {
 
 
     }).orElseThrow(() -> new RuntimeException("Not found Developer with id = " + developerId));
-
-     return skill;
   }
 }
