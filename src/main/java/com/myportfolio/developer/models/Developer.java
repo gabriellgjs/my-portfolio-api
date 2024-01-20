@@ -1,5 +1,6 @@
 package com.myportfolio.developer.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.user.models.User;
 import jakarta.persistence.*;
@@ -19,7 +20,7 @@ public class Developer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
   private String name;
   private String email;
 
@@ -35,6 +36,7 @@ public class Developer {
 
   @ManyToOne
   @JoinColumn(name="user_id")
+  @JsonIgnore
   private User user;
 
   @ManyToMany

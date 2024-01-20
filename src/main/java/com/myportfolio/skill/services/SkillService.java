@@ -2,6 +2,7 @@ package com.myportfolio.skill.services;
 
 import com.myportfolio.developer.repositories.DeveloperRepository;
 import com.myportfolio.skill.dtos.SkillDTO;
+import com.myportfolio.skill.exceptions.SkillExistException;
 import com.myportfolio.skill.factories.SkillFactory;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.skill.repositories.SkillRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkillService {
@@ -24,6 +26,11 @@ public class SkillService {
   private SkillFactory skillFactory;
 
   public Skill createSkill(SkillDTO data) {
+    Optional<Skill> skillExist = this.skillRepository.findByName(data.name());
+
+    if(skillExist.isPresent()) {
+      throw  new SkillExistException();
+    }
 
     Skill newSKill =  skillFactory.createSkill(data);
 
@@ -45,9 +52,15 @@ public class SkillService {
        if(skillRequest.id().isPresent()) {
          Long skillId = skillRequest.id().get();
          Skill skillExist = this.skillRepository.findById(skillId)
-         .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
+          .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
+
+         if(skillExist.getName().equalsIgnoreCase(skillRequest.name())) {
+           throw  new SkillExistException();
+         }
+
          developer.addSkill(skillExist);
          this.developerRepository.save(developer);
+
          return skillExist;
        }
 
