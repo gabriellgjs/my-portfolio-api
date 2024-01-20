@@ -21,6 +21,8 @@ public class DeveloperController {
     return new ResponseEntity<>(this.developerService.getAllDevelopers(), HttpStatus.OK);
   }
 
+
+
   @PostMapping
   public ResponseEntity<Developer> createDeveloper (@RequestBody DeveloperDTO data) throws Exception {
     Developer newDeveloper = this.developerService.createDeveloper(data);
