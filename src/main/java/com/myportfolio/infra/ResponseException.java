@@ -1,6 +1,5 @@
 package com.myportfolio.infra;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
