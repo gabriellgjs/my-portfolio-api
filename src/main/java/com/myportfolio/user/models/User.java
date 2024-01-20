@@ -1,6 +1,5 @@
 package com.myportfolio.user.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.user.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
