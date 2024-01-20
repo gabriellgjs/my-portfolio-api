@@ -1,6 +1,5 @@
 package com.myportfolio.skill.services;
 
-import com.myportfolio.developer.models.Developer;
 import com.myportfolio.developer.repositories.DeveloperRepository;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.factories.SkillFactory;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SkillService {
@@ -24,6 +22,7 @@ public class SkillService {
 
   @Autowired
   private SkillFactory skillFactory;
+
   public Skill createSkill(SkillDTO data) {
 
     Skill newSKill =  skillFactory.createSkill(data);
