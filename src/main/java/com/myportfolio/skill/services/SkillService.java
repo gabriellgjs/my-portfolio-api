@@ -34,7 +34,6 @@ public class SkillService {
 
   public List<Skill> listAllSkills() {
     List<Skill> skillsList = new ArrayList<>();
-    System.out.println(this.skillRepository.findAll());
     this.skillRepository.findAll().forEach(skillsList::add);
 
 
