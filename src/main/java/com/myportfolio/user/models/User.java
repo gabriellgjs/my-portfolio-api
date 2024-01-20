@@ -23,17 +23,17 @@ public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long Id;
+
   private String email;
 
   private String password;
-  @Enumerated(EnumType.STRING)
 
+  @Enumerated(EnumType.STRING)
   private UserRole role;
 
   public User(String email, String password, UserRole role) {
     this.email = email;
     this.password =password;
-
     this.role= role;
   }
 
