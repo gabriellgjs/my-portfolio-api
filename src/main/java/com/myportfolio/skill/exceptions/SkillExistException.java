@@ -1,11 +1,15 @@
 package com.myportfolio.skill.exceptions;
 
-public class SkillExistException extends RuntimeException{
-  public SkillExistException() {
-    super("Essa skill já existe!");
-  }
+import lombok.Getter;
 
-  public SkillExistException(String message) {
+import java.util.Map;
+
+@Getter
+public class SkillExistException extends RuntimeException{
+  private Map<String, String> errors;
+
+  public SkillExistException(String message, Map<String, String> errors) {
     super(message);
+    this.errors = errors;
   }
 }

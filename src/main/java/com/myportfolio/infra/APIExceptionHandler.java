@@ -12,7 +12,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(SkillExistException.class)
   private ResponseEntity<ResponseException> skillExistException(SkillExistException exception) {
-    ResponseException threatResponse = new ResponseException(HttpStatus.BAD_REQUEST, exception.getMessage());
+    ResponseException threatResponse = new ResponseException(HttpStatus.BAD_REQUEST, exception.getMessage(), exception.getErrors());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(threatResponse);
   }
 }

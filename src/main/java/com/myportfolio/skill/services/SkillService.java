@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,11 @@ public class SkillService {
     Optional<Skill> skillExist = this.skillRepository.findByName(data.name());
 
     if(skillExist.isPresent()) {
-      throw  new SkillExistException();
+      HashMap<String, String> errors = new HashMap<>();
+
+      errors.put("name", data.name());
+
+      throw new SkillExistException("Essa skill já existe!", errors);
     }
 
     Skill newSKill =  skillFactory.createSkill(data);
@@ -55,7 +60,11 @@ public class SkillService {
           .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
 
          if(skillExist.getName().equalsIgnoreCase(skillRequest.name())) {
-           throw  new SkillExistException();
+           HashMap<String, String> errors= new HashMap<>();
+
+           errors.put("name", skillRequest.name());
+
+           throw new SkillExistException("Essa skill já existe!", errors);
          }
 
          developer.addSkill(skillExist);
