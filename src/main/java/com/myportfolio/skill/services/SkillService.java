@@ -48,7 +48,6 @@ public class SkillService {
     List<Skill> skillsList = new ArrayList<>();
     this.skillRepository.findAll().forEach(skillsList::add);
 
-
     return skillsList;
   }
 

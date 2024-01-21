@@ -6,7 +6,7 @@ import java.util.Map;
 
 @Getter
 public class SkillExistException extends RuntimeException{
-  private Map<String, String> errors;
+  private final Map<String, String> errors;
 
   public SkillExistException(String message, Map<String, String> errors) {
     super(message);
