@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class SkillExistException extends RuntimeException{
-
   public SkillExistException(String message) {
     super(message);
   }

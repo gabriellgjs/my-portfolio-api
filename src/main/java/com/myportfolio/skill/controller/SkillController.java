@@ -1,6 +1,7 @@
 package com.myportfolio.skill.controller;
 
 import com.myportfolio.infra.ResponseValidationException;
+import com.myportfolio.skill.dtos.LinkSkillWithDeveloperDTO;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.skill.services.SkillService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("skills")
@@ -37,7 +39,7 @@ public class SkillController {
   @PutMapping("/{skillId}")
   public ResponseEntity<Skill> updateSkill (
     @PathVariable(value = "skillId") Long skillId,
-    @RequestBody SkillDTO data) {
+    @RequestBody @Valid SkillDTO data) {
     return new ResponseEntity<>(this.skillService.updateSkill(skillId, data), HttpStatus.OK);
   }
 
@@ -53,10 +55,9 @@ public class SkillController {
     return new ResponseEntity<>(this.skillService.createSkill(data), HttpStatus.CREATED);
   }
 
-  @PostMapping("/developer/{developerId}/skill")
-  public ResponseEntity<Skill> addSkill(@PathVariable(value = "developerId") Long developerId, @RequestBody SkillDTO data) {
-
-    return new ResponseEntity<>(this.skillService.addSkillInDeveloper(developerId, data), HttpStatus.CREATED);
+  @PostMapping("/link/developer/{developerId}")
+  public ResponseEntity<Optional<Skill>> linkSKillWithDeveloper(@PathVariable(value = "developerId") Long developerId, @RequestBody LinkSkillWithDeveloperDTO data) {
+    return new ResponseEntity<>(this.skillService.addSkillInDeveloper(developerId, data), HttpStatus.OK);
   }
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
