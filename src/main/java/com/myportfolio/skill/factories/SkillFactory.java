@@ -13,4 +13,13 @@ public class SkillFactory {
 
     return  newSkill;
   }
+
+  public Skill updateSKill(Long skillId, SkillDTO data) {
+    Skill updateSkill = new Skill();
+
+    updateSkill.setId(skillId);
+    updateSkill.setName(data.name());
+
+    return  updateSkill;
+  }
 }

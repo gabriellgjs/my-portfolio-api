@@ -1,5 +1,8 @@
 package com.myportfolio.skill.dtos;
 
-import java.util.Optional;
+import jakarta.validation.constraints.NotBlank;
 
-public record SkillDTO(Optional<Long>id,  String name) {}
+public record SkillDTO(
+    @NotBlank(message = "Nome não informado")
+    String name)
+{}
