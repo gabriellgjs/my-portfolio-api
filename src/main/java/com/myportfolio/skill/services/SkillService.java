@@ -32,10 +32,6 @@ public class SkillService {
     Optional<Skill> skillExist = this.skillRepository.findByName(skillRequest.name());
 
     if(skillExist.isPresent()) {
-      HashMap<String, String> errors = new HashMap<>();
-
-      errors.put("name", skillRequest.name());
-
       throw new SkillExistException("Essa skill já existe!");
     }
 
@@ -47,8 +43,7 @@ public class SkillService {
   }
 
   public List<Skill> listAllSkills() {
-    List<Skill> skillsList = new ArrayList<>();
-    this.skillRepository.findAll().forEach(skillsList::add);
+    List<Skill> skillsList = new ArrayList<>(this.skillRepository.findAll());
 
     return skillsList;
   }
@@ -62,7 +57,7 @@ public class SkillService {
   public void deleteSkill(Long skillId) {
     List<Developer> developersUsingSkill = this.developerRepository.findDevelopersBySkillsId(skillId);
 
-    if(developersUsingSkill.size() > 0) {
+    if(!developersUsingSkill.isEmpty()) {
       throw new SkillInUse("Skill está sendo usada");
     }
 

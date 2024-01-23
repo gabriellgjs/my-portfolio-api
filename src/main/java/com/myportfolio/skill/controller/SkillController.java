@@ -1,6 +1,5 @@
 package com.myportfolio.skill.controller;
 
-import com.myportfolio.infra.ResponseException;
 import com.myportfolio.infra.ResponseValidationException;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.models.Skill;
