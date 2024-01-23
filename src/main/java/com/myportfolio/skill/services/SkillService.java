@@ -1,8 +1,10 @@
 package com.myportfolio.skill.services;
 
+import com.myportfolio.developer.models.Developer;
 import com.myportfolio.developer.repositories.DeveloperRepository;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.exceptions.SkillExistException;
+import com.myportfolio.skill.exceptions.SkillInUse;
 import com.myportfolio.skill.factories.SkillFactory;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.skill.repositories.SkillRepository;
@@ -26,18 +28,18 @@ public class SkillService {
   @Autowired
   private SkillFactory skillFactory;
 
-  public Skill createSkill(SkillDTO data) {
-    Optional<Skill> skillExist = this.skillRepository.findByName(data.name());
+  public Skill createSkill(SkillDTO skillRequest) {
+    Optional<Skill> skillExist = this.skillRepository.findByName(skillRequest.name());
 
     if(skillExist.isPresent()) {
       HashMap<String, String> errors = new HashMap<>();
 
-      errors.put("name", data.name());
+      errors.put("name", skillRequest.name());
 
-      throw new SkillExistException("Essa skill já existe!", errors);
+      throw new SkillExistException("Essa skill já existe!");
     }
 
-    Skill newSKill =  skillFactory.createSkill(data);
+    Skill newSKill =  skillFactory.createSkill(skillRequest);
 
     this.skillRepository.save(newSKill);
 
@@ -51,6 +53,23 @@ public class SkillService {
     return skillsList;
   }
 
+  public Skill updateSkill(Long skillId, SkillDTO skillRequest) {
+    Skill updateSKill =  skillFactory.updateSKill(skillId, skillRequest);
+
+    this.skillRepository.save(updateSKill);
+    return updateSKill;
+  }
+  public void deleteSkill(Long skillId) {
+    List<Developer> developersUsingSkill = this.developerRepository.findDevelopersBySkillsId(skillId);
+
+    if(developersUsingSkill.size() > 0) {
+      throw new SkillInUse("Skill está sendo usada");
+    }
+
+    this.skillRepository.deleteById(skillId);
+  }
+
+
   public List<Skill>listSkillByDeveloperId(Long developerId) {
     return this.skillRepository.findSkillsByDevelopersId(developerId);
   }
@@ -63,11 +82,7 @@ public class SkillService {
           .orElseThrow(() -> new RuntimeException("Not found Skill with id = " + skillId));
 
          if(skillExist.getName().equalsIgnoreCase(skillRequest.name())) {
-           HashMap<String, String> errors= new HashMap<>();
-
-           errors.put("name", skillRequest.name());
-
-           throw new SkillExistException("Essa skill já existe!", errors);
+           throw new SkillExistException("Essa skill já existe!");
          }
 
          developer.addSkill(skillExist);

@@ -1,6 +1,7 @@
 package com.myportfolio.skill.controller;
 
 import com.myportfolio.infra.ResponseException;
+import com.myportfolio.infra.ResponseValidationException;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.skill.services.SkillService;
@@ -34,6 +35,20 @@ public class SkillController {
     return new ResponseEntity<>(this.skillService.listSkillByDeveloperId(developerId), HttpStatus.OK);
   }
 
+  @PutMapping("/{skillId}")
+  public ResponseEntity<Skill> updateSkill (
+    @PathVariable(value = "skillId") Long skillId,
+    @RequestBody SkillDTO data) {
+    return new ResponseEntity<>(this.skillService.updateSkill(skillId, data), HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{skillId}")
+  public ResponseEntity deleteSkill (
+  @PathVariable(value = "skillId") Long skillId) {
+    this.skillService.deleteSkill(skillId);
+    return ResponseEntity.noContent().build();
+  }
+
   @PostMapping
   public ResponseEntity<Skill> createSkill(@RequestBody @Valid SkillDTO data) {
     return new ResponseEntity<>(this.skillService.createSkill(data), HttpStatus.CREATED);
@@ -47,7 +62,7 @@ public class SkillController {
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ResponseException> handleValidationExceptions(MethodArgumentNotValidException ex) {
+  public ResponseEntity<ResponseValidationException> handleValidationExceptions(MethodArgumentNotValidException ex) {
     Map<String, String> errors = new HashMap<>();
     ex.getBindingResult().getAllErrors().forEach((error) -> {
       String fieldName = ((FieldError) error).getField();
@@ -55,7 +70,7 @@ public class SkillController {
       errors.put(fieldName, errorMessage);
     });
 
-    ResponseException threatResponse = new ResponseException(HttpStatus.BAD_REQUEST, "Erros de validações", errors);
+    ResponseValidationException threatResponse = new ResponseValidationException(HttpStatus.BAD_REQUEST, "Erros de validações", errors);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(threatResponse);
   }
 }

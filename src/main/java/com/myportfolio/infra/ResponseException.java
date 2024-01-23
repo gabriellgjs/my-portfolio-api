@@ -12,12 +12,10 @@ import java.util.Map;
 public class ResponseException {
   private int status;
   private String message;
-  private Map<String, String> errors;
 
 
-  public ResponseException(HttpStatus status, String message, Map<String, String> errors) {
+  public ResponseException(HttpStatus status, String message) {
     this.status = status.value();
     this.message =message;
-    this.errors = errors;
   }
 }

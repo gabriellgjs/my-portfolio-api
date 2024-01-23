@@ -5,9 +5,9 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-public class SkillExistException extends RuntimeException{
+public class SkillInUse extends RuntimeException{
 
-  public SkillExistException(String message) {
+  public SkillInUse(String message) {
     super(message);
   }
 }
