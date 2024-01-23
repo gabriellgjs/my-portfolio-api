@@ -24,9 +24,14 @@ public class SkillController {
   @Autowired
   private SkillService skillService;
 
-  @GetMapping()
+  @GetMapping
   public List<Skill>listAllSkills() {
     return this.skillService.listAllSkills();
+  }
+
+  @GetMapping("/developer/{developerId}")
+  public ResponseEntity<List<Skill>> listSKillByDeveloper(@PathVariable(value = "developerId") Long developerId){
+    return new ResponseEntity<>(this.skillService.listSkillByDeveloperId(developerId), HttpStatus.OK);
   }
 
   @PostMapping

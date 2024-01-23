@@ -1,6 +1,5 @@
 package com.myportfolio.skill.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myportfolio.developer.models.Developer;
 import com.myportfolio.experience.models.Experience;

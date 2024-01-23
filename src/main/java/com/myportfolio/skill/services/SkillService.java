@@ -51,6 +51,10 @@ public class SkillService {
     return skillsList;
   }
 
+  public List<Skill>listSkillByDeveloperId(Long developerId) {
+    return this.skillRepository.findSkillsByDevelopersId(developerId);
+  }
+
   public Skill addSkillInDeveloper(Long developerId, SkillDTO skillRequest) {
      return this.developerRepository.findById(developerId).map(developer -> {
        if(skillRequest.id().isPresent()) {
