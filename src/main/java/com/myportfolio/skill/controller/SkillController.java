@@ -1,7 +1,6 @@
 package com.myportfolio.skill.controller;
 
 import com.myportfolio.infra.ResponseValidationException;
-import com.myportfolio.skill.dtos.LinkSkillWithDeveloperDTO;
 import com.myportfolio.skill.dtos.SkillDTO;
 import com.myportfolio.skill.models.Skill;
 import com.myportfolio.skill.services.SkillService;
@@ -27,7 +26,7 @@ public class SkillController {
   private SkillService skillService;
 
   @GetMapping
-  public List<Skill>listAllSkills() {
+  public List<Skill> listAllSkills() {
     return this.skillService.listAllSkills();
   }
 
@@ -37,14 +36,14 @@ public class SkillController {
   }
 
   @PutMapping("/{skillId}")
-  public ResponseEntity<Skill> updateSkill (
+  public ResponseEntity<Skill> updateSkill(
     @PathVariable(value = "skillId") Long skillId,
     @RequestBody @Valid SkillDTO data) {
     return new ResponseEntity<>(this.skillService.updateSkill(skillId, data), HttpStatus.OK);
   }
 
   @DeleteMapping("/{skillId}")
-  public ResponseEntity deleteSkill (
+  public ResponseEntity deleteSkill(
   @PathVariable(value = "skillId") Long skillId) {
     this.skillService.deleteSkill(skillId);
     return ResponseEntity.noContent().build();
@@ -55,9 +54,19 @@ public class SkillController {
     return new ResponseEntity<>(this.skillService.createSkill(data), HttpStatus.CREATED);
   }
 
-  @PostMapping("/link/developer/{developerId}")
-  public ResponseEntity<Optional<Skill>> linkSKillWithDeveloper(@PathVariable(value = "developerId") Long developerId, @RequestBody LinkSkillWithDeveloperDTO data) {
-    return new ResponseEntity<>(this.skillService.addSkillInDeveloper(developerId, data), HttpStatus.OK);
+  @PatchMapping("/link-developer/{developerId}/{skillId}")
+  public ResponseEntity<Optional<Skill>> linkSKillWithDeveloper(
+    @PathVariable(value = "developerId") Long developerId,
+    @PathVariable(value = "skillId") Long skillId) {
+    return new ResponseEntity<>(this.skillService.linkSkillInDeveloper(developerId, skillId), HttpStatus.OK);
+  }
+
+  @PatchMapping("/unlink-developer/{developerId}/{skillId}")
+  public ResponseEntity unlinkSKillWithDeveloper(
+    @PathVariable(value = "developerId") Long developerId,
+    @PathVariable(value = "skillId") Long skillId) {
+    this.skillService.unlinkSkillInDeveloper(developerId, skillId);
+    return ResponseEntity.noContent().build();
   }
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
