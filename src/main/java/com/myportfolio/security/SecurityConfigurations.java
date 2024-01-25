@@ -27,15 +27,20 @@ public class SecurityConfigurations {
     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     .authorizeHttpRequests(authorize -> authorize
     .requestMatchers(HttpMethod.GET,"/ping").permitAll()
-    .requestMatchers(HttpMethod.GET, "/resume").permitAll()
+    .requestMatchers(HttpMethod.GET,"/ping/pong").hasRole("ADMIN")
+
+    .requestMatchers(HttpMethod.GET, "/resume/**").permitAll()
+
     .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
     .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-    .requestMatchers(HttpMethod.GET,"/ping/pong").hasRole("ADMIN")
+
     .requestMatchers(HttpMethod.GET, "/developers").hasRole("ADMIN")
     .requestMatchers(HttpMethod.POST, "/developers").hasRole("ADMIN")
+
     .requestMatchers(HttpMethod.GET, "/educations").hasRole("ADMIN")
     .requestMatchers(HttpMethod.POST, "/educations").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/educations/**").hasRole("ADMIN")
+
     .requestMatchers(HttpMethod.POST, "/experiences").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/experiences").hasRole("ADMIN")
 
@@ -50,7 +55,6 @@ public class SecurityConfigurations {
 
     .requestMatchers(HttpMethod.POST, "/projects").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/projects").hasRole("ADMIN")
-
     .anyRequest().authenticated()
     )
     .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
