@@ -43,7 +43,7 @@ public class SecurityConfigurations {
     .requestMatchers(HttpMethod.GET, "/skills/**").hasRole("ADMIN")
     .requestMatchers(HttpMethod.GET, "/skills").hasRole("ADMIN")
     .requestMatchers(HttpMethod.POST, "/skills").hasRole("ADMIN")
-    .requestMatchers(HttpMethod.POST, "/skills/**").hasRole("ADMIN")
+    .requestMatchers(HttpMethod.PATCH, "/skills/**").hasRole("ADMIN")
     .requestMatchers(HttpMethod.PUT, "/skills/**").hasRole("ADMIN")
     .requestMatchers(HttpMethod.DELETE, "/skills/**").hasRole("ADMIN")
 

@@ -50,4 +50,12 @@ public class Developer {
     this.skills.add(skill);
     skill.getDevelopers().add(this);
   }
+
+  public void removeSkill(long skillId) {
+    Skill _skill = this.skills.stream().filter(skill -> skill.getId() == skillId).findFirst().orElse(null);
+    if (_skill != null) {
+      this.skills.remove(_skill);
+      _skill.getDevelopers().remove(this);
+    }
+  }
 }
